@@ -7,76 +7,12 @@ import Loader from '@/components/Loader';
 import { useEffect, useState } from 'react';
 import MsgShower from '@/components/MsgShower';
 import ScrollMsg from '@/components/ScrollMsg';
-import CourseCard from '@/components/CourseCard';
+// import CourseCard from '@/components/CourseCard';
 import Link from 'next/link';
 import { resizeGoogleProfileImage } from '@/lib/formatTime';
 
 function UserInfo() {
 	const { status, data: session } = useSession();
-	const [page, setPage] = useState(1);
-	const [courses, setCourses] = useState([]);
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState('');
-	const [end, setEnd] = useState(false);
-	const mongoId = session?.user?.mongoId;
-
-	useEffect(() => {
-		const fetchData = async () => {
-			setLoading(true);
-
-			try {
-				if (!mongoId) {
-					return;
-				}
-				const response = await fetch(
-					`/api/enrolledCourses/byUser?userId=${mongoId}&page=${page}`
-				);
-
-				if (!response.ok) {
-					throw new Error(`HTTP error! Status: ${response.status}`);
-				}
-
-				const dataArr = await response.json();
-
-				if (!dataArr.userEnrolledCourses.enrolledCourses) {
-					setError(`You haven't enrolled yet!`);
-					return;
-				}
-
-				if (dataArr.userEnrolledCourses.enrolledCourses.length < 1) {
-					setEnd(true);
-				}
-
-				setCourses((prev) => [
-					...prev,
-					...dataArr.userEnrolledCourses.enrolledCourses,
-				]);
-			} catch (error) {
-				setError(`Error fetching data: ${error.message}`);
-			} finally {
-				setLoading(false);
-			}
-		};
-
-		fetchData();
-	}, [page, mongoId]);
-
-	const handleScroll = () => {
-		if (
-			window.innerHeight + document.documentElement.scrollTop + 1 >=
-			document.documentElement.scrollHeight
-		) {
-			if (!end) {
-				setPage((prev) => prev + 1);
-			}
-		}
-	};
-
-	useEffect(() => {
-		window.addEventListener('scroll', handleScroll);
-
-		return () => window.removeEventListener('scroll', handleScroll);
-	});
 
 	if (status === 'loading') {
 		return <Loader />;
@@ -125,27 +61,6 @@ function UserInfo() {
 							See Orders
 						</Link>
 					</h2>
-					<div className='flex px-7 gap-5 py-2 flex-wrap w-full justify-stretch smd:justify-center'>
-						{!courses ? (
-							<MsgShower msg={'No Courses available!'} />
-						) : (
-							courses?.map((item) => {
-								return (
-									<CourseCard
-										key={item._id}
-										course={item}
-										showButton={true}
-										buttonTitle={"Let's Study"}
-										buttonActionLink={`/viewCourse/${item._id}`}
-										showDetails={false}
-									/>
-								);
-							})
-						)}
-						{loading && <Loader className='self-center' />}
-						{error && <ScrollMsg msg={error} />}
-						{end && <ScrollMsg msg={'No further Courses!'} />}
-					</div>
 				</div>
 			</div>
 		);

@@ -13,7 +13,7 @@ const nextConfig = {
 	},
 	experimental: {
 		serverActions: {
-			allowedOrigins: ['hsccrackers.com', '*.hsccrackers.com'],
+			allowedOrigins: ['purpledrafts.com', '*.purpledrafts.com'],
 			bodySizeLimit: '50mb',
 		},
 	},

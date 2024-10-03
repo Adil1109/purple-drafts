@@ -1,14 +1,15 @@
 'use client';
-import { createShortUrlAction } from '@/actions/shortUrlActions';
+import { createCategoryAction } from '@/actions/categoriesActions';
+import FileInput from '@/components/FileInput';
 import Input from '@/components/Input';
-import Select from '@/components/Select';
 import SubmitButton from '@/components/SubmitButton';
 import { useRef, useState } from 'react';
 
-export default function CreateShortUrl() {
+export default function CreateCategory() {
 	const formRef = useRef(null);
 	const successRef = useRef(null);
 	const failedRef = useRef(null);
+	const [selectedFile, setSelectedFile] = useState(null);
 
 	return (
 		<div className='grid place-items-center h-screen'>
@@ -18,10 +19,11 @@ export default function CreateShortUrl() {
 					successRef.current.textContent = '';
 					failedRef.current.textContent = '';
 
-					const data = await createShortUrlAction(formData);
+					const data = await createCategoryAction(formData);
 
 					if (data?.success) {
 						formRef.current?.reset();
+						setSelectedFile(null);
 						successRef.current.textContent = 'Created!';
 					} else {
 						failedRef.current.textContent = data?.error;
@@ -29,29 +31,28 @@ export default function CreateShortUrl() {
 				}}
 				className='ssm:w-[90%] w-[580px] shadow-xl p-8 rounded-md flex flex-col gap-3 !bg-base-100 '>
 				<h2 className='text-white font-bold text-2xl mb-4 self-center'>
-					Create Short Url
+					Create Category
 				</h2>
 
 				<Input
 					typeAttr={'text'}
-					nameAttr={'shortUrlIdentifier'}
-					placeholderAttr={'Short Url Name (e.g: Varsity24)'}
+					nameAttr={'name'}
+					placeholderAttr={'Category Name'}
 					requiredAttr={true}
 					classAttr={'w-full'}
 				/>
 				<Input
-					typeAttr={'url'}
-					nameAttr={'shortUrl'}
-					placeholderAttr={'Main URL'}
+					typeAttr={'text'}
+					nameAttr={'description'}
+					placeholderAttr={'Description'}
 					requiredAttr={true}
 					classAttr={'w-full'}
 				/>
 
-				<Select
-					requiredAttr={true}
-					placeholderAttr={'Select Type'}
-					classAttr={'w-full'}
-					optionsAttr={['INTERNEL', 'EXTERNEL']}
+				<FileInput
+					nameAttr={'thumbnailImage'}
+					selectedFile={selectedFile}
+					setSelectedFile={setSelectedFile}
 				/>
 
 				<div className='self-center mt-4'>

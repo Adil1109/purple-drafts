@@ -16,14 +16,12 @@ export default function Input({
 		<label className='form-control'>
 			{labelAttr && (
 				<div className='label !px-0'>
-					<span className='label-text !text-oc-black-secondary'>
-						{labelAttr}
-					</span>
+					<span className='label-text'>{labelAttr}</span>
 				</div>
 			)}
 			<div className='relative'>
 				<input
-					className={`block text-oc-black-primary placeholder:text-sm placeholder:text-[#989DBB] focus:!ring-0 focus:shadow-oc-shadow-1 focus:border
+					className={`block bg-slate-700 outline-none rounded-md placeholder:text-sm placeholder:text-[#989DBB] focus:!ring-0 focus:shadow-oc-shadow-1 focus:border
            focus:border-oc-primary px-4 py-3 ${classAttr} ${
 						errorAttr
 							? 'shadow-oc-shadow-2 border border-oc-red focus:shadow-oc-shadow-2 focus:border focus:border-oc-red'
@@ -36,10 +34,10 @@ export default function Input({
 					minLength={3}
 					{...props}
 				/>
-				<span className='absolute z-[2] top-1/2 -translate-y-1/2 text-oc-black-primary left-4'>
+				<span className='absolute z-[2] top-1/2 -translate-y-1/2 left-4'>
 					{leftIconAttr && leftIconAttr}
 				</span>
-				<span className='absolute z-[2] top-1/2 -translate-y-1/2 text-oc-black-primary end-4'>
+				<span className='absolute z-[2] top-1/2 -translate-y-1/2 end-4'>
 					{rightIconAttr && rightIconAttr}
 				</span>
 			</div>

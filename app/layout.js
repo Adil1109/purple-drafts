@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
 					{process.env.DEV_STATUS === 'production' ? (
 						<div className='max-w-full mx-auto text-white'>
 							<Navbar />
-							<div className='min-h-screen h-full w-full -mt-16 bg-gradient-to-t to-[#0f172a] from-[#12243c]'>
+							<div className='min-h-screen h-full w-full bg-gradient-to-t to-[#0f172a] from-[#12243c]'>
 								{children}
 							</div>
 						</div>

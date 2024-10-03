@@ -32,7 +32,7 @@ const FileInput = ({
 		<div>
 			<label
 				htmlFor={nameAttr}
-				className='flex flex-col items-center justify-center w-full h-48 border-2 border-gray-700 border-dashed rounded-lg cursor-pointer !bg-base-300'>
+				className='flex flex-col items-center justify-center w-full h-48 border-2 border-gray-700 border-dashed rounded-lg cursor-pointer !bg-slate-700'>
 				{selectedFile ? (
 					<div>
 						<img

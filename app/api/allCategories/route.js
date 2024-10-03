@@ -1,5 +1,5 @@
 import { connectMongoDB } from '@/lib/mongodb';
-import Course from '@/models/coursesModel';
+import Category from '@/models/categoriesModel';
 import { NextResponse } from 'next/server';
 
 await connectMongoDB();
@@ -7,7 +7,7 @@ await connectMongoDB();
 export async function GET(request) {
 	try {
 		const page = request.nextUrl.searchParams.get('page');
-		const CoursePerPage = 10;
+		const CategoryPerPage = 10;
 		let pageNum = 0;
 
 		if (page <= 1) {
@@ -15,12 +15,12 @@ export async function GET(request) {
 		} else {
 			pageNum = page - 1;
 		}
-		const courses = await Course.find({ courseShow: 'YES' })
+		const categories = await Category.find()
 			.sort({ createdAt: -1 })
-			.skip(pageNum * CoursePerPage)
-			.limit(CoursePerPage);
+			.skip(pageNum * CategoryPerPage)
+			.limit(CategoryPerPage);
 
-		return NextResponse.json({ courses }, { status: 200 });
+		return NextResponse.json({ categories }, { status: 200 });
 	} catch (error) {
 		return NextResponse.json(
 			{ message: 'Something went wrong', error },

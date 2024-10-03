@@ -22,6 +22,11 @@ const shortUrlSchema = new mongoose.Schema(
 				message: '{VALUE} is not supported',
 			},
 		},
+		shortUrlCreator: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'User',
+			required: true,
+		},
 		shortUrlClickCount: {
 			type: Number,
 			default: 0,

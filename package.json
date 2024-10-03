@@ -1,37 +1,37 @@
 {
-  "name": "hsc-crackers",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@supabase/supabase-js": "^2.39.3",
-    "axios": "^1.6.8",
-    "joi": "^17.12.1",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.1.1",
-    "next": "^14.2.3",
-    "next-auth": "^4.24.5",
-    "node-fetch": "^3.3.2",
-    "plyr-react": "^5.3.0",
-    "react": "^18.3.1",
-    "react-countup": "^6.5.3",
-    "react-dom": "^18.3.1",
-    "react-icons": "^5.0.1",
-    "react-player": "^2.15.1",
-    "react-type-animation": "^3.2.0",
-    "uuid": "^9.0.1"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.0.1",
-    "daisyui": "^4.6.1",
-    "eslint": "^8",
-    "eslint-config-next": "^14.2.3",
-    "postcss": "^8",
-    "tailwindcss": "^3.3.0"
-  }
+	"name": "purple-drafts",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@tiptap/pm": "^2.8.0",
+		"@tiptap/react": "^2.8.0",
+		"@tiptap/starter-kit": "^2.8.0",
+		"axios": "^1.6.8",
+		"cloudinary": "^2.5.0",
+		"joi": "^17.12.1",
+		"jsonwebtoken": "^9.0.2",
+		"mongoose": "^8.7.0",
+		"next": "^14.2.3",
+		"next-auth": "^4.24.5",
+		"react": "^18.3.1",
+		"react-countup": "^6.5.3",
+		"react-dom": "^18.3.1",
+		"react-icons": "^5.0.1",
+		"react-player": "^2.15.1",
+		"react-type-animation": "^3.2.0"
+	},
+	"devDependencies": {
+		"autoprefixer": "^10.0.1",
+		"daisyui": "^4.12.10",
+		"eslint": "^8",
+		"eslint-config-next": "^14.2.3",
+		"postcss": "^8",
+		"tailwindcss": "^3.3.0"
+	}
 }

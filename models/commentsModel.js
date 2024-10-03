@@ -20,7 +20,7 @@ const commentSchema = new mongoose.Schema(
 		commentContentIDRefModel: {
 			type: String,
 			required: true,
-			enum: ['Video', 'Playlist', 'Announcement'],
+			enum: ['Blog'],
 		},
 	},
 	{ timestamps: true }
