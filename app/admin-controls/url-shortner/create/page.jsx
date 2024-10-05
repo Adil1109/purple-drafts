@@ -3,12 +3,14 @@ import { createShortUrlAction } from '@/actions/shortUrlActions';
 import Input from '@/components/Input';
 import Select from '@/components/Select';
 import SubmitButton from '@/components/SubmitButton';
+import { useSession } from 'next-auth/react';
 import { useRef, useState } from 'react';
 
 export default function CreateShortUrl() {
 	const formRef = useRef(null);
 	const successRef = useRef(null);
 	const failedRef = useRef(null);
+	const { status, data: session } = useSession();
 
 	return (
 		<div className='grid place-items-center h-screen'>
@@ -17,7 +19,7 @@ export default function CreateShortUrl() {
 				action={async (formData) => {
 					successRef.current.textContent = '';
 					failedRef.current.textContent = '';
-
+					formData.append('shortUrlCreator', session?.user?.mongoId);
 					const data = await createShortUrlAction(formData);
 
 					if (data?.success) {
@@ -35,7 +37,7 @@ export default function CreateShortUrl() {
 				<Input
 					typeAttr={'text'}
 					nameAttr={'shortUrlIdentifier'}
-					placeholderAttr={'Short Url Name (e.g: Varsity24)'}
+					placeholderAttr={'Short Url Name (e.g: Google24Plan)'}
 					requiredAttr={true}
 					classAttr={'w-full'}
 				/>

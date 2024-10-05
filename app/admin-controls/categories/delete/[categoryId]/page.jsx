@@ -4,7 +4,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import Loader from '@/components/Loader';
-import { deleteCategoryAction } from '@/actions/categoriesActions';
+import { deleteCategoryAction } from '@/actions/categoryActions';
 
 export default function DeleteAdmin() {
 	const params = useParams();

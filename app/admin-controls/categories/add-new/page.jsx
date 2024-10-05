@@ -1,5 +1,5 @@
 'use client';
-import { createCategoryAction } from '@/actions/categoriesActions';
+import { createCategoryAction } from '@/actions/categoryActions';
 import FileInput from '@/components/FileInput';
 import Input from '@/components/Input';
 import SubmitButton from '@/components/SubmitButton';

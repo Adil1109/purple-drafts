@@ -7,6 +7,7 @@ const joiShortUrlSchema = Joi.object({
 	shortUrl: Joi.string().min(3).required(),
 	shortUrlType: Joi.string().min(3).required(),
 	shortUrlIdentifier: Joi.string().min(3).required(),
+	shortUrlCreator: Joi.string().min(3).required(),
 });
 const joiShortUrlUpdateSchema = Joi.object({
 	shortUrl: Joi.string().min(3).required(),
@@ -44,11 +45,13 @@ export const createShortUrlAction = async (formData) => {
 		const shortUrl = formData.get('shortUrl')?.toString();
 		const shortUrlType = formData.get('shortUrlType')?.toString();
 		const shortUrlIdentifier = formData.get('shortUrlIdentifier')?.toString();
+		const shortUrlCreator = formData.get('shortUrlCreator')?.toString();
 
 		const { error, value } = joiShortUrlSchema.validate({
 			shortUrl,
 			shortUrlType,
 			shortUrlIdentifier,
+			shortUrlCreator,
 		});
 
 		if (error) {
@@ -68,6 +71,7 @@ export const createShortUrlAction = async (formData) => {
 			shortUrl,
 			shortUrlType,
 			shortUrlIdentifier,
+			shortUrlCreator,
 		});
 		if (result) {
 			return { success: true };

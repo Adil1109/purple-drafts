@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import {
 	fetchCategoryAction,
 	updateCategoryAction,
-} from '@/actions/categoriesActions';
+} from '@/actions/categoryActions';
 import FileInput from '@/components/FileInput';
 import Input from '@/components/Input';
 import SubmitButton from '@/components/SubmitButton';
