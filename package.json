@@ -9,12 +9,12 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@aws-sdk/client-s3": "^3.665.0",
 		"@tiptap/extension-underline": "^2.8.0",
 		"@tiptap/pm": "^2.8.0",
 		"@tiptap/react": "^2.8.0",
 		"@tiptap/starter-kit": "^2.8.0",
 		"axios": "^1.6.8",
-		"cloudinary": "^2.5.0",
 		"joi": "^17.12.1",
 		"jsonwebtoken": "^9.0.2",
 		"mongoose": "^8.7.0",
