@@ -1,15 +1,13 @@
 import { connectMongoDB } from '@/lib/mongodb';
-import Playlist from '@/models/playlistsModel';
+import Blog from '@/models/blogsModel';
 import { NextResponse } from 'next/server';
 
 await connectMongoDB();
 
 export async function GET(request) {
 	try {
-		const stClass = request.nextUrl.searchParams.get('stClass');
 		const page = request.nextUrl.searchParams.get('page');
-
-		const PlaylistPerPage = 10;
+		const BlogPerPage = 10;
 		let pageNum = 0;
 
 		if (page <= 1) {
@@ -17,12 +15,12 @@ export async function GET(request) {
 		} else {
 			pageNum = page - 1;
 		}
-		const playlists = await Playlist.find({ playlistClass: stClass })
-			.sort({ playlistName: 1 })
-			.skip(pageNum * PlaylistPerPage)
-			.limit(PlaylistPerPage);
+		const blogs = await Blog.find()
+			.sort({ createdAt: -1 })
+			.skip(pageNum * BlogPerPage)
+			.limit(BlogPerPage);
 
-		return NextResponse.json({ playlists }, { status: 200 });
+		return NextResponse.json({ blogs }, { status: 200 });
 	} catch (error) {
 		return NextResponse.json(
 			{ message: 'Something went wrong', error },

@@ -3,6 +3,7 @@ import { createCategoryAction } from '@/actions/categoryActions';
 import FileInput from '@/components/FileInput';
 import Input from '@/components/Input';
 import SubmitButton from '@/components/SubmitButton';
+import Textarea from '@/components/Textarea';
 import { useRef, useState } from 'react';
 
 export default function CreateCategory() {
@@ -41,7 +42,7 @@ export default function CreateCategory() {
 					requiredAttr={true}
 					classAttr={'w-full'}
 				/>
-				<Input
+				<Textarea
 					typeAttr={'text'}
 					nameAttr={'description'}
 					placeholderAttr={'Description'}

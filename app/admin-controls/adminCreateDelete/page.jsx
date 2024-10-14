@@ -11,6 +11,7 @@ import {
 import { useEffect, useState } from 'react';
 import { MdDelete } from 'react-icons/md';
 import SubmitButton from '@/components/SubmitButton';
+import Select from '@/components/Select';
 
 export default function AdminCreateDelete() {
 	const [adminData, setAdminData] = useState([]);
@@ -49,20 +50,17 @@ export default function AdminCreateDelete() {
 					typeAttr={'email'}
 					nameAttr={'email'}
 					placeholderAttr={'User Email'}
+					classAttr={'w-full'}
 					requiredAttr={true}
 				/>
 
-				<select
+				<Select
 					name='role'
-					defaultValue={''}
-					className='!bg-base-300 px-4 py-2 rounded-md w-full'
-					required>
-					<option disabled value=''>
-						Select Role
-					</option>
-					<option value='admin'>Admin</option>
-					<option value='manager'>Manager</option>
-				</select>
+					requiredAttr={true}
+					classAttr={'w-full'}
+					placeholderAttr={'Select Role'}
+					optionsAttr={['admin', 'superAdmin']}
+				/>
 
 				<div className='self-center mt-4'>
 					<SubmitButton />

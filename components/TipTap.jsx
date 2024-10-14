@@ -31,7 +31,7 @@ const Tiptap = ({ onChange, content, description }) => {
 		editorProps: {
 			attributes: {
 				class:
-					'flex flex-col px-4 py-3 justify-start min-h-80 border-b border-r border-l border-gray-300 text-white items-start w-full gap-3 font-medium text-[16px] pt-4 rounded-bl-md rounded-br-md outline-none',
+					'flex flex-col px-4 py-3 justify-start min-h-80 border-b border-r border-l border-gray-300 text-slate-100 items-start w-full gap-3 font-medium text-[16px] pt-4 rounded-bl-md rounded-br-md outline-none',
 			},
 		},
 		onUpdate: ({ editor }) => {

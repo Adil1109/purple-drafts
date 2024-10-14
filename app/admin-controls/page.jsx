@@ -2,7 +2,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '../api/auth/[...nextauth]/route';
 import Link from 'next/link';
 import MenuItem from '@/components/MenuItem';
-import { FaUserPlus } from 'react-icons/fa';
+import { FaBlog, FaUserPlus } from 'react-icons/fa';
 import { FiFilePlus } from 'react-icons/fi';
 import { LuBookPlus } from 'react-icons/lu';
 import MsgShower from '@/components/MsgShower';
@@ -35,6 +35,9 @@ export default async function AdminControls() {
 
 					<Link href={'/admin-controls/categories'}>
 						<MenuItem Icon={MdCategory} Title={'Categories'} />
+					</Link>
+					<Link href={'/admin-controls/blogs'}>
+						<MenuItem Icon={FaBlog} Title={'Blogs'} />
 					</Link>
 
 					<Link href={'/admin-controls/url-shortner'}>

@@ -33,11 +33,11 @@ body {
 }
 
 .ctxtColor {
-	color: #8c52ff;
+	color: #a855f7;
 }
 
 .cbgColor {
-	background-color: #8c52ff;
+	background-color: #a855f7;
 }
 
 .player-wrapper {
@@ -73,7 +73,7 @@ input[type='number'] {
 	height: 2px; /* Set the height of the horizontal scrollbar */
 }
 ::-webkit-scrollbar-thumb:horizontal {
-	background-color: #8c52ff; /* Set the height of the horizontal scrollbar */
+	background-color: #a855f7; /* Set the height of the horizontal scrollbar */
 }
 
 /* Customize the scrollbar track */

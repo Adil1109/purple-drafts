@@ -6,12 +6,20 @@ import Blog from '@/models/blogsModel';
 
 const joiBlogCreateSchema = Joi.object({
 	title: Joi.string().required(),
+	shortDescription: Joi.string().required(),
+	categories: Joi.array().items(Joi.string()).required(),
 	description: Joi.string().required(),
-	thumbnailURL: Joi.string().allow('').optional(),
+	tags: Joi.string().required(),
+	author: Joi.string().required(),
+	thumbnailURL: Joi.string().required(),
 });
 const joiBlogUpdateSchema = Joi.object({
 	title: Joi.string().required(),
+	shortDescription: Joi.string().required(),
+	categories: Joi.array().items(Joi.string()).required(),
 	description: Joi.string().required(),
+	tags: Joi.string().required(),
+	author: Joi.string().required(),
 	thumbnailURL: Joi.string().allow('').optional(),
 });
 export const fetchAllBlogAction = async () => {
@@ -37,11 +45,15 @@ export const fetchBlogAction = async (_id) => {
 	}
 };
 
-export const createBlogAction = async (formData) => {
+export const addBlogAction = async (formData) => {
 	try {
 		const title = formData.get('title')?.toString();
+		const shortDescription = formData.get('shortDescription')?.toString();
 		const description = formData.get('description')?.toString();
+		const tags = formData.get('tags')?.toString();
+		const author = formData.get('author')?.toString();
 		const thumbnailImage = formData.get('thumbnailImage');
+		const categories = formData.getAll('categories');
 
 		if (
 			!thumbnailImage ||
@@ -55,7 +67,11 @@ export const createBlogAction = async (formData) => {
 
 		const { error, value } = joiBlogCreateSchema.validate({
 			title,
+			shortDescription,
 			description,
+			tags,
+			author,
+			categories,
 			thumbnailURL,
 		});
 
@@ -66,7 +82,11 @@ export const createBlogAction = async (formData) => {
 
 		const result = await Blog.create({
 			title,
+			shortDescription,
 			description,
+			tags,
+			author,
+			categories,
 			thumbnailURL,
 		});
 		if (result) {
@@ -79,12 +99,19 @@ export const createBlogAction = async (formData) => {
 
 export const updateBlogAction = async (formData) => {
 	try {
-		const _id = formData.get('blogId')?.toString();
+		const blogId = formData.get('blogId')?.toString();
 		const title = formData.get('title')?.toString();
+		const shortDescription = formData.get('shortDescription')?.toString();
 		const description = formData.get('description')?.toString();
-		const thumbnailImage = formData.get('thumbnailImage')?.toString();
+		const tags = formData.get('tags')?.toString();
+		const author = formData.get('author')?.toString();
+		const thumbnailImage = formData.get('thumbnailImage');
+		const categories = formData.getAll('categories');
+
 		let thumbnailURL;
+
 		if (
+			thumbnailImage &&
 			thumbnailImage.size > 0 &&
 			(thumbnailImage.type === 'image/jpeg' ||
 				thumbnailImage.type === 'image/png')
@@ -93,23 +120,36 @@ export const updateBlogAction = async (formData) => {
 		}
 		const { error, value } = joiBlogUpdateSchema.validate({
 			title,
+			shortDescription,
 			description,
+			author,
+			tags,
+			categories,
 			thumbnailURL,
 		});
 
 		if (error) {
-			throw new Error(error);
+			throw new Error(error.details[0].message);
 		}
-		await connectMongoDB();
-		const existingBlog = await Blog.findOne({ _id });
 
+		await connectMongoDB();
+
+		const existingBlog = await Blog.findById(blogId);
+		if (!existingBlog) {
+			throw new Error('Blog not found');
+		}
 		existingBlog.title = title;
+		existingBlog.shortDescription = shortDescription;
 		existingBlog.description = description;
-		if (thumbnailImage.size > 0) {
+		existingBlog.tags = tags;
+		existingBlog.author = author;
+		existingBlog.categories = categories;
+		if (thumbnailURL) {
 			existingBlog.thumbnailURL = thumbnailURL;
 		}
 
 		const result = await existingBlog.save();
+
 		if (result) {
 			return { success: true };
 		}

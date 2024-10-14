@@ -13,7 +13,7 @@ export const fetchAdminAction = async () => {
 		await connectMongoDB();
 
 		const result = await User.find({
-			role: { $in: ['admin', 'manager'] },
+			role: { $in: ['admin', 'superAdmin'] },
 		}).select('name email role');
 		const dataObj = JSON.parse(JSON.stringify(result));
 

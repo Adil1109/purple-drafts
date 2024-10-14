@@ -3,6 +3,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import Dropdown from './Dropdown';
+import {
+	FaHome,
+	FaBook,
+	FaThLarge,
+	FaEye,
+	FaChartLine,
+	FaInfoCircle,
+	FaBars,
+} from 'react-icons/fa'; // Icons import
 
 export default function Navbar() {
 	const pathname = usePathname();
@@ -12,58 +21,79 @@ export default function Navbar() {
 		<div className='z-10 sticky top-0'>
 			<div className='w-full h-16 navbar bg-gradient-to-t to-[#0f172a] from-[#12243c]'>
 				<div className='flex-1'>
-					<Link href={'/'} className='btn btn-ghost text-xl'>
+					<Link href={'/'} className='btn btn-ghost text-xl flex items-center'>
 						<Image
 							src={
-								'https://res.cloudinary.com/dhbwywnjs/image/upload/v1727729771/s1gqkyjypw0dscldtblt.png'
+								'https://res.cloudinary.com/dccbdekei/image/upload/v1728768824/statics/jf3ub8jnj6gv7gpddiku.png'
 							}
 							alt='logo'
 							width={40}
 							height={40}
 						/>
-						PurpleDrafts
+						<span className='ml-1 italic'>
+							Purple<span className='ctxtColor'>Drafts</span>
+						</span>
 					</Link>
 				</div>
 				<div className='hidden lg:flex'>
 					<ul className='menu menu-horizontal'>
-						{/* Navbar menu content here */}
 						<li>
-							<Link className={` ${pathname === '/' && 'cbgColor'}`} href={'/'}>
+							<Link
+								className={` ${
+									pathname === '/' && 'cbgColor'
+								} flex items-center`}
+								href={'/'}>
+								<FaHome className='mr-1' />
 								Home
 							</Link>
 						</li>
 						<li>
 							<Link
-								className={` ${pathname === '/recent-blogs' && 'cbgColor'}`}
+								className={` ${
+									pathname === '/recent-blogs' && 'cbgColor'
+								} flex items-center`}
 								href={'/recent-blogs'}>
+								<FaBook className='mr-1' />
 								Recent Blogs
 							</Link>
 						</li>
 						<li>
 							<Link
-								className={` ${pathname === '/categories' && 'cbgColor'}`}
+								className={` ${
+									pathname === '/categories' && 'cbgColor'
+								} flex items-center`}
 								href={'/categories'}>
+								<FaThLarge className='mr-1' />
 								Categories
 							</Link>
 						</li>
 						<li>
 							<Link
-								className={` ${pathname === '/most-viewed' && 'cbgColor'}`}
+								className={` ${
+									pathname === '/most-viewed' && 'cbgColor'
+								} flex items-center`}
 								href={'/most-viewed'}>
+								<FaEye className='mr-1' />
 								Most Viewed
 							</Link>
 						</li>
 						<li>
 							<Link
-								className={` ${pathname === '/trending' && 'cbgColor'}`}
+								className={` ${
+									pathname === '/trending' && 'cbgColor'
+								} flex items-center`}
 								href={'/trending'}>
+								<FaChartLine className='mr-1' />
 								Trending
 							</Link>
 						</li>
 						<li>
 							<Link
-								className={` ${pathname === '/about' && 'cbgColor'}`}
+								className={` ${
+									pathname === '/about' && 'cbgColor'
+								} flex items-center`}
 								href={'/about'}>
+								<FaInfoCircle className='mr-1' />
 								About
 							</Link>
 						</li>
@@ -71,44 +101,34 @@ export default function Navbar() {
 
 					<Dropdown />
 				</div>
-				<div>
-					<div className='flex-none lg:hidden'>
-						<label
-							htmlFor='my-drawer-3'
-							aria-label='open sidebar'
-							className='btn btn-square btn-ghost'>
-							<svg
-								xmlns='http://www.w3.org/2000/svg'
-								fill='none'
-								viewBox='0 0 24 24'
-								className='inline-block w-6 h-6 stroke-current'>
-								<path
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									strokeWidth='2'
-									d='M4 6h16M4 12h16M4 18h16'></path>
-							</svg>
-						</label>
-					</div>
+				<div className='flex-none lg:hidden'>
+					<label
+						htmlFor='my-drawer-3'
+						aria-label='open sidebar'
+						className='btn btn-square btn-ghost'>
+						<FaBars className='w-6 h-6' />
+					</label>
 				</div>
 			</div>
-			<div className='drawer drawer-end  z-20 bg-green-300'>
+			<div className='drawer drawer-end  z-20'>
 				<input id='my-drawer-3' type='checkbox' className='drawer-toggle' />
-				<div className='drawer-content flex flex-col'>{/* Navbar */}</div>
+				<div className='drawer-content flex flex-col gap-3'>{/* Navbar */}</div>
 				<div className='drawer-side'>
 					<label
 						htmlFor='my-drawer-3'
 						aria-label='close sidebar'
 						className='drawer-overlay'></label>
-					<div className='menu p-4 w-80 min-h-full !bg-base-200 flex flex-col '>
-						{/* Sidebar content here */}
+					<div className='menu p-4 w-80 min-h-full !bg-base-200 flex flex-col gap-3'>
 						<p>
 							<label
 								htmlFor='my-drawer-3'
-								className='cursor-pointer hover:!bg-base-300 h-10 flex items-center p-3 rounded-md '>
+								className='cursor-pointer hover:!bg-base-100 h-10 flex items-center p-3 rounded-md'>
 								<span
-									className={`w-full  ${pathname === '/' && 'cbgColor'}`}
+									className={`w-full text-lg flex items-center ${
+										pathname === '/' && 'ctxtColor'
+									}`}
 									onClick={() => router.push('/')}>
+									<FaHome className='mr-2' />
 									Home
 								</span>
 							</label>
@@ -117,12 +137,13 @@ export default function Navbar() {
 						<p>
 							<label
 								htmlFor='my-drawer-3'
-								className='cursor-pointer hover:!bg-base-300 h-10 flex items-center p-3 rounded-md'>
+								className='cursor-pointer hover:!bg-base-100 h-10 flex items-center p-3 rounded-md'>
 								<span
-									className={`w-full  ${
-										pathname === '/recent-blogs' && 'cbgColor'
+									className={`w-full text-lg flex items-center ${
+										pathname === '/recent-blogs' && 'ctxtColor'
 									}`}
 									onClick={() => router.push('/recent-blogs')}>
+									<FaBook className='mr-2' />
 									Recent Blogs
 								</span>
 							</label>
@@ -131,12 +152,13 @@ export default function Navbar() {
 						<p>
 							<label
 								htmlFor='my-drawer-3'
-								className='cursor-pointer hover:!bg-base-300 h-10 flex items-center p-3 rounded-md'>
+								className='cursor-pointer hover:!bg-base-100 h-10 flex items-center p-3 rounded-md'>
 								<span
-									className={`w-full  ${
-										pathname === '/categories' && 'cbgColor'
+									className={`w-full text-lg flex items-center ${
+										pathname === '/categories' && 'ctxtColor'
 									}`}
 									onClick={() => router.push('/categories')}>
+									<FaThLarge className='mr-2' />
 									Categories
 								</span>
 							</label>
@@ -145,12 +167,13 @@ export default function Navbar() {
 						<p>
 							<label
 								htmlFor='my-drawer-3'
-								className='cursor-pointer hover:!bg-base-300 h-10 flex items-center p-3 rounded-md'>
+								className='cursor-pointer hover:!bg-base-100 h-10 flex items-center p-3 rounded-md'>
 								<span
-									className={`w-full  ${
-										pathname === '/most-viewed' && 'cbgColor'
+									className={`w-full text-lg flex items-center ${
+										pathname === '/most-viewed' && 'ctxtColor'
 									}`}
 									onClick={() => router.push('/most-viewed')}>
+									<FaEye className='mr-2' />
 									Most Viewed
 								</span>
 							</label>
@@ -159,12 +182,13 @@ export default function Navbar() {
 						<p>
 							<label
 								htmlFor='my-drawer-3'
-								className='cursor-pointer hover:!bg-base-300 h-10 flex items-center p-3 rounded-md'>
+								className='cursor-pointer hover:!bg-base-100 h-10 flex items-center p-3 rounded-md'>
 								<span
-									className={`w-full  ${
-										pathname === '/trending' && 'cbgColor'
+									className={`w-full text-lg flex items-center ${
+										pathname === '/trending' && 'ctxtColor'
 									}`}
 									onClick={() => router.push('/trending')}>
+									<FaChartLine className='mr-2' />
 									Trending
 								</span>
 							</label>
@@ -173,10 +197,13 @@ export default function Navbar() {
 						<p>
 							<label
 								htmlFor='my-drawer-3'
-								className='cursor-pointer hover:!bg-base-300 h-10 flex items-center p-3 rounded-md'>
+								className='cursor-pointer hover:!bg-base-100 h-10 flex items-center p-3 rounded-md'>
 								<span
-									className={`w-full  ${pathname === '/about' && 'cbgColor'}`}
+									className={`w-full text-lg flex items-center ${
+										pathname === '/about' && 'ctxtColor'
+									}`}
 									onClick={() => router.push('/about')}>
+									<FaInfoCircle className='mr-2' />
 									About
 								</span>
 							</label>

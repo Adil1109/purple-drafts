@@ -15,17 +15,17 @@ export default function Dropdown() {
 	const router = useRouter();
 	return (
 		<>
-			{status === 'unauthenticated' && (
+			{/* {status === 'unauthenticated' && (
 				<Link
-					className=' text-slate-100 cbgColor mr-3 px-3 py-1 rounded-md mt-1'
+					className=' text-slate-100 bg-purple-500 mr-3 px-3 py-1 rounded-md mt-1'
 					href={'/profile'}>
 					Signin
 				</Link>
-			)}
+			)} */}
 			{status === 'authenticated' && (
 				<div className='dropdown dropdown-end mr-5 sm:mr-1'>
 					<Image
-						className='rounded-full border-green-300 border-2 shadow-blackish mr-3'
+						className='rounded-full  border-2 shadow-blackish mr-3'
 						tabIndex={tabIndex}
 						role='button'
 						src={session?.user?.image}

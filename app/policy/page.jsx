@@ -1,13 +1,15 @@
 export default function Policy() {
 	return (
-		<div className=''>
-			<h1 className='p-2 text-2xl text-white'>Policies</h1>
-			<div className='p-2'>
-				<div className='py-3 my-2 bg-transparent shadow-xl bg-base-100 px-3 rounded-md'>
-					<h2 className='py-1 text-xl font-medium text-white'>
+		<div className='bg-gray-900 min-h-screen py-8 px-4'>
+			<h1 className='p-4 text-3xl font-bold text-purple-500 text-center'>
+				Policies
+			</h1>
+			<div className='max-w-4xl mx-auto space-y-6'>
+				<div className='bg-gray-800 shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg p-6'>
+					<h2 className='text-2xl font-semibold text-purple-500 mb-2'>
 						Privacy Policy:
 					</h2>
-					<p>
+					<p className='text-gray-200'>
 						Purple Drafts provides this Privacy Policy to inform users about our
 						practices regarding data collection, use, and sharing. By using our
 						service, you agree to the terms outlined here. Any personal
@@ -19,11 +21,11 @@ export default function Policy() {
 					</p>
 				</div>
 
-				<div className='py-3 my-2 bg-transparent shadow-xl bg-base-100 px-3 rounded-md'>
-					<h2 className='py-1 text-xl font-medium text-white'>
+				<div className='bg-gray-800 shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg p-6'>
+					<h2 className='text-2xl font-semibold text-purple-500 mb-2'>
 						Information Collection and Use:
 					</h2>
-					<p>
+					<p className='text-gray-200'>
 						For a better experience, we may request certain personally
 						identifiable information from you. The information collected is
 						retained on your device and is not collected by us. However, the
@@ -32,9 +34,11 @@ export default function Policy() {
 					</p>
 				</div>
 
-				<div className='py-3 my-2 bg-transparent shadow-xl bg-base-100 px-3 rounded-md'>
-					<h2 className='py-1 text-xl font-medium text-white'>Log Data:</h2>
-					<p>
+				<div className='bg-gray-800 shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg p-6'>
+					<h2 className='text-2xl font-semibold text-purple-500 mb-2'>
+						Log Data:
+					</h2>
+					<p className='text-gray-200'>
 						In case of an error or crash, we may collect Log Data through
 						third-party services. This data may include your device&apos;s
 						Internet Protocol (IP) address, device name, operating system
@@ -43,9 +47,11 @@ export default function Policy() {
 					</p>
 				</div>
 
-				<div className='py-3 my-2 bg-transparent shadow-xl bg-base-100 px-3 rounded-md'>
-					<h2 className='py-1 text-xl font-medium text-white'>Cookies:</h2>
-					<p>
+				<div className='bg-gray-800 shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg p-6'>
+					<h2 className='text-2xl font-semibold text-purple-500 mb-2'>
+						Cookies:
+					</h2>
+					<p className='text-gray-200'>
 						Purple Drafts does not use cookies directly. However, the app may
 						include third-party services or libraries that utilize cookies to
 						enhance user experience. You can choose to accept or refuse cookies
@@ -54,11 +60,11 @@ export default function Policy() {
 					</p>
 				</div>
 
-				<div className='py-3 my-2 bg-transparent shadow-xl bg-base-100 px-3 rounded-md'>
-					<h2 className='py-1 text-xl font-medium text-white'>
+				<div className='bg-gray-800 shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg p-6'>
+					<h2 className='text-2xl font-semibold text-purple-500 mb-2'>
 						Service Providers:
 					</h2>
-					<p>
+					<p className='text-gray-200'>
 						We may employ third-party companies to support our service, provide
 						services on our behalf, or assist in analyzing service usage. These
 						third parties may have access to personal information to perform
@@ -66,9 +72,11 @@ export default function Policy() {
 					</p>
 				</div>
 
-				<div className='py-3 my-2 bg-transparent shadow-xl bg-base-100 px-3 rounded-md'>
-					<h2 className='py-1 text-xl font-medium text-white'>Security:</h2>
-					<p>
+				<div className='bg-gray-800 shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg p-6'>
+					<h2 className='text-2xl font-semibold text-purple-500 mb-2'>
+						Security:
+					</h2>
+					<p className='text-gray-200'>
 						We strive to protect your personal information using commercially
 						acceptable security measures. However, no method of transmission or
 						electronic storage is entirely secure. Therefore, we cannot
@@ -76,11 +84,11 @@ export default function Policy() {
 					</p>
 				</div>
 
-				<div className='py-3 my-2 bg-transparent shadow-xl bg-base-100 px-3 rounded-md'>
-					<h2 className='py-1 text-xl font-medium text-white'>
+				<div className='bg-gray-800 shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg p-6'>
+					<h2 className='text-2xl font-semibold text-purple-500 mb-2'>
 						Links to Other Sites:
 					</h2>
-					<p>
+					<p className='text-gray-200'>
 						Purple Drafts may contain links to external sites. We do not operate
 						these third-party sites, and their privacy policies may differ from
 						ours. We encourage you to review the Privacy Policies of any linked
@@ -88,11 +96,11 @@ export default function Policy() {
 					</p>
 				</div>
 
-				<div className='py-3 my-2 bg-transparent shadow-xl bg-base-100 px-3 rounded-md'>
-					<h2 className='py-1 text-xl font-medium text-white'>
+				<div className='bg-gray-800 shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg p-6'>
+					<h2 className='text-2xl font-semibold text-purple-500 mb-2'>
 						Children’s Privacy:
 					</h2>
-					<p>
+					<p className='text-gray-200'>
 						Purple Drafts does not knowingly collect personal information from
 						children under the age of 13. If we become aware that a child under
 						13 has provided us with personal data, we will take steps to delete
@@ -101,24 +109,24 @@ export default function Policy() {
 					</p>
 				</div>
 
-				<div className='py-3 my-2 bg-transparent shadow-xl bg-base-100 px-3 rounded-md'>
-					<h2 className='py-1 text-xl font-medium text-white'>
+				<div className='bg-gray-800 shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg p-6'>
+					<h2 className='text-2xl font-semibold text-purple-500 mb-2'>
 						Changes to the Policy:
 					</h2>
-					<p>
+					<p className='text-gray-200'>
 						We may update our Privacy Policy periodically. Users are encouraged
 						to review this page for any changes. Updates will be posted here,
 						and the policy is effective immediately upon posting.
 					</p>
 				</div>
 
-				<div className='py-3 my-2 bg-transparent shadow-xl bg-base-100 px-3 rounded-md'>
-					<h2 className='py-1 text-xl font-medium text-white'>
+				<div className='bg-gray-800 shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg p-6'>
+					<h2 className='text-2xl font-semibold text-purple-500 mb-2'>
 						Contact Information:
 					</h2>
-					<p>
+					<p className='text-gray-200'>
 						If you have any questions or suggestions regarding our Privacy
-						Policy, feel free to reach out to us.{' '}
+						Policy, feel free to reach out to us.
 					</p>
 				</div>
 			</div>

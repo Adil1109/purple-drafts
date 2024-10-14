@@ -44,23 +44,8 @@ function UserInfo() {
 							{session?.user?.email}
 						</span>
 					</div>
-					<div>
-						<Link
-							href={'/profile/your-donations'}
-							className='underline text-white font-bold text-lg ssm:text-sm'>
-							Your Donations
-						</Link>
-					</div>
 
 					<hr className='w-full border-slate-700' />
-				</div>
-				<div>
-					<h2 className='pl-8 flex justify-between text-white font-bold text-lg ssm:text-sm'>
-						<span>Enrolled Courses</span>
-						<Link href={'/profile/allOrders'} className='underline mr-5'>
-							See Orders
-						</Link>
-					</h2>
 				</div>
 			</div>
 		);
