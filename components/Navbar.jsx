@@ -11,14 +11,18 @@ import {
 	FaChartLine,
 	FaInfoCircle,
 	FaBars,
-} from 'react-icons/fa'; // Icons import
+} from 'react-icons/fa';
+import { useSession } from 'next-auth/react';
+import { CgProfile } from 'react-icons/cg';
+import CategoryDropdown from './CategoryDropdown';
 
 export default function Navbar() {
 	const pathname = usePathname();
 	const router = useRouter();
+	const { status, data: session } = useSession();
 
 	return (
-		<div className='z-10 sticky top-0'>
+		<div className='z-20 sticky top-0'>
 			<div className='w-full h-16 navbar bg-gradient-to-t to-[#0f172a] from-[#12243c]'>
 				<div className='flex-1'>
 					<Link href={'/'} className='btn btn-ghost text-xl flex items-center'>
@@ -58,14 +62,15 @@ export default function Navbar() {
 							</Link>
 						</li>
 						<li>
-							<Link
+							{/* <Link
 								className={` ${
 									pathname === '/categories' && 'cbgColor'
 								} flex items-center`}
 								href={'/categories'}>
 								<FaThLarge className='mr-1' />
 								Categories
-							</Link>
+							</Link> */}
+							<CategoryDropdown />
 						</li>
 						<li>
 							<Link
@@ -87,16 +92,18 @@ export default function Navbar() {
 								Trending
 							</Link>
 						</li>
-						<li>
-							<Link
-								className={` ${
-									pathname === '/about' && 'cbgColor'
-								} flex items-center`}
-								href={'/about'}>
-								<FaInfoCircle className='mr-1' />
-								About
-							</Link>
-						</li>
+						{status === 'unauthenticated' && (
+							<li>
+								<Link
+									className={` ${
+										pathname === '/profile' && 'cbgColor'
+									} flex items-center`}
+									href={'/profile'}>
+									<CgProfile className='mr-1' />
+									Profile
+								</Link>
+							</li>
+						)}
 					</ul>
 
 					<Dropdown />

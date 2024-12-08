@@ -9,6 +9,7 @@ const nextConfig = {
 			{ protocol: 'https', hostname: 'odktnagnepyfmpvtseok.supabase.co' },
 			{ protocol: 'https', hostname: 'ftywvrnzwxxtrgpuezac.supabase.co' },
 			{ protocol: 'https', hostname: 'res.cloudinary.com' },
+			{ protocol: 'https', hostname: 'damsoncloud.com' },
 			{
 				protocol: 'https',
 				hostname: 'purpledrafts.s3.us-east-005.backblazeb2.com',

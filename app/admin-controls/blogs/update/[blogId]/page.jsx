@@ -11,6 +11,7 @@ import Textarea from '@/components/Textarea';
 import DynamicSelect from '@/components/DynamicSelect';
 import { fetchAllCategoryAction } from '@/actions/categoryActions';
 import { updateBlogAction, fetchBlogAction } from '@/actions/blogActions';
+import Checkbox from '@/components/Checkbox';
 
 const UpdateBlog = () => {
 	const formRef = useRef(null);
@@ -21,13 +22,14 @@ const UpdateBlog = () => {
 	const { status, data: session } = useSession();
 	const router = useRouter();
 	const params = useParams();
+	const [description, setDescription] = useState('');
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [categories, setCategories] = useState([]);
 	const [blogData, setBlogData] = useState({
 		title: '',
 		shortDescription: '',
 		tags: '',
-		selectedCategories: [],
+		categories: [],
 	});
 
 	useEffect(() => {
@@ -38,11 +40,10 @@ const UpdateBlog = () => {
 					title: fetchedBlogData.title,
 					shortDescription: fetchedBlogData.shortDescription,
 					tags: fetchedBlogData.tags,
-					selectedCategories: fetchedBlogData.categories.map(
-						(category) => category.id
-					),
+					categories: fetchedBlogData.categories,
 				});
 				setContent(fetchedBlogData?.description);
+				setDescription(fetchedBlogData?.description);
 			} catch (error) {
 				console.error('Error fetching blog data:', error);
 			}
@@ -109,19 +110,30 @@ const UpdateBlog = () => {
 						setBlogData({ ...blogData, shortDescription: e.target.value })
 					}
 				/>
+				<p>Select Category:</p>
+				<div className='flex w-full gap-4'>
+					{categories?.map((item) => (
+						<Checkbox
+							checked={blogData?.categories?.some((category) => {
+								return category === item._id;
+							})}
+							key={item?._id}
+							label={item?.name}
+							name={'categories'}
+							value={item?._id}
+							_id={item?._id}
+							onChange={(e) => {
+								const newCategories = e.target.checked
+									? [...blogData.categories, item._id]
+									: blogData.categories.filter(
+											(category) => category !== item._id
+									  );
+								setBlogData({ ...blogData, categories: newCategories });
+							}}
+						/>
+					))}
+				</div>
 
-				<DynamicSelect
-					classAttr={'w-full'}
-					multiple
-					optionsAttr={categories}
-					valueAttr={blogData.selectedCategories}
-					ds={'name'}
-					placeholderAttr={'Select category'}
-					requiredAttr={true}
-					onChange={(selectedOptions) =>
-						setBlogData({ ...blogData, selectedCategories: selectedOptions })
-					}
-				/>
 				<FileInput
 					nameAttr={'thumbnailImage'}
 					selectedFile={selectedFile}
@@ -130,7 +142,7 @@ const UpdateBlog = () => {
 
 				<Tiptap
 					content={content}
-					description={blogData?.description}
+					description={description}
 					onChange={(newContent) => setContent(newContent)}
 				/>
 

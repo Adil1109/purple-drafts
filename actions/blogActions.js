@@ -7,16 +7,17 @@ import Blog from '@/models/blogsModel';
 const joiBlogCreateSchema = Joi.object({
 	title: Joi.string().required(),
 	shortDescription: Joi.string().required(),
-	categories: Joi.array().items(Joi.string()).required(),
+	categories: Joi.array().items(Joi.string()).min(1).required(),
 	description: Joi.string().required(),
 	tags: Joi.string().required(),
 	author: Joi.string().required(),
 	thumbnailURL: Joi.string().required(),
 });
+
 const joiBlogUpdateSchema = Joi.object({
 	title: Joi.string().required(),
 	shortDescription: Joi.string().required(),
-	categories: Joi.array().items(Joi.string()).required(),
+	categories: Joi.array().items(Joi.string()).min(1).required(),
 	description: Joi.string().required(),
 	tags: Joi.string().required(),
 	author: Joi.string().required(),
@@ -54,7 +55,6 @@ export const addBlogAction = async (formData) => {
 		const author = formData.get('author')?.toString();
 		const thumbnailImage = formData.get('thumbnailImage');
 		const categories = formData.getAll('categories');
-
 		if (
 			!thumbnailImage ||
 			(thumbnailImage.type !== 'image/jpeg' &&
@@ -89,6 +89,7 @@ export const addBlogAction = async (formData) => {
 			categories,
 			thumbnailURL,
 		});
+		console.log(result);
 		if (result) {
 			return { success: true };
 		}
@@ -149,6 +150,7 @@ export const updateBlogAction = async (formData) => {
 		}
 
 		const result = await existingBlog.save();
+		console.log(result);
 
 		if (result) {
 			return { success: true };

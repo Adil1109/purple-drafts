@@ -7,6 +7,7 @@ export default function DynamicSelect({
 	errorAttr,
 	placeholderAttr,
 	optionsAttr,
+	nameAttr,
 	ds,
 	...props
 }) {
@@ -26,12 +27,13 @@ export default function DynamicSelect({
 							: ''
 					}`}
 					required={requiredAttr}
+					name={nameAttr}
 					{...props}>
 					{placeholderAttr && <option value=''>{placeholderAttr}</option>}
 					{optionsAttr &&
 						optionsAttr.map((item) => {
 							return (
-								<option value={item.id} key={item.id}>
+								<option value={item._id} key={item._id}>
 									{item[ds]}
 								</option>
 							);

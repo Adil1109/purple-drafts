@@ -11,6 +11,7 @@ import FileInput from '@/components/FileInput';
 import Textarea from '@/components/Textarea';
 import DynamicSelect from '@/components/DynamicSelect';
 import { fetchAllCategoryAction } from '@/actions/categoryActions';
+import Checkbox from '@/components/Checkbox';
 
 const Upload = () => {
 	const formRef = useRef(null);
@@ -27,8 +28,6 @@ const Upload = () => {
 		const fetchCategories = async () => {
 			try {
 				const fetchedCategoryData = await fetchAllCategoryAction();
-				console.log(fetchedCategoryData);
-
 				setCategories(fetchedCategoryData);
 			} catch (error) {
 				console.error('Error fetching categories:', error);
@@ -48,6 +47,7 @@ const Upload = () => {
 					failedRef.current.textContent = '';
 					formData.append('description', content);
 					formData.append('author', session?.user?.mongoId);
+					console.log(formData.getAll('categories'));
 					const data = await addBlogAction(formData);
 
 					if (data?.success) {
@@ -73,14 +73,18 @@ const Upload = () => {
 					requiredAttr={true}
 					placeholderAttr={'Enter the a short description!'}
 				/>
-				<DynamicSelect
-					classAttr={'w-full'}
-					multiple
-					optionsAttr={categories}
-					ds={'name'}
-					placeholderAttr={'Select category'}
-					requiredAttr={true}
-				/>
+				<p>Select Category:</p>
+				<div className='flex w-full gap-4'>
+					{categories?.map((item) => (
+						<Checkbox
+							key={item?._id}
+							label={item?.name}
+							name={'categories'}
+							value={item?._id}
+							id={'category'}
+						/>
+					))}
+				</div>
 				<FileInput
 					nameAttr={'thumbnailImage'}
 					selectedFile={selectedFile}
