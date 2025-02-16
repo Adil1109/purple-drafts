@@ -9,6 +9,7 @@ export default function Home() {
 					'url("https://res.cloudinary.com/dccbdekei/image/upload/v1729067177/statics/jmz61s1kg03jsukz5zl2.jpg")',
 				backgroundSize: 'cover',
 				backgroundPosition: 'center',
+				minHeight: '100vh',
 			}}>
 			<div className='hero text-white relative'>
 				<div

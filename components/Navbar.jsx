@@ -54,9 +54,9 @@ export default function Navbar() {
 						<li>
 							<Link
 								className={` ${
-									pathname === '/recent-blogs' && 'cbgColor'
+									pathname === '/blogs/recent-blogs' && 'cbgColor'
 								} flex items-center`}
-								href={'/recent-blogs'}>
+								href={'/blogs/recent-blogs'}>
 								<FaBook className='mr-1' />
 								Recent Blogs
 							</Link>
@@ -75,9 +75,9 @@ export default function Navbar() {
 						<li>
 							<Link
 								className={` ${
-									pathname === '/most-viewed' && 'cbgColor'
+									pathname === '/blogs/most-viewed' && 'cbgColor'
 								} flex items-center`}
-								href={'/most-viewed'}>
+								href={'/blogs/most-viewed'}>
 								<FaEye className='mr-1' />
 								Most Viewed
 							</Link>
@@ -85,9 +85,9 @@ export default function Navbar() {
 						<li>
 							<Link
 								className={` ${
-									pathname === '/trending' && 'cbgColor'
+									pathname === '/blogs/trending' && 'cbgColor'
 								} flex items-center`}
-								href={'/trending'}>
+								href={'/blogs/trending'}>
 								<FaChartLine className='mr-1' />
 								Trending
 							</Link>
@@ -147,9 +147,9 @@ export default function Navbar() {
 								className='cursor-pointer hover:!bg-base-100 h-10 flex items-center p-3 rounded-md'>
 								<span
 									className={`w-full text-lg flex items-center ${
-										pathname === '/recent-blogs' && 'ctxtColor'
+										pathname === '/blogs/recent-blogs' && 'ctxtColor'
 									}`}
-									onClick={() => router.push('/recent-blogs')}>
+									onClick={() => router.push('/blogs/recent-blogs')}>
 									<FaBook className='mr-2' />
 									Recent Blogs
 								</span>
@@ -177,9 +177,9 @@ export default function Navbar() {
 								className='cursor-pointer hover:!bg-base-100 h-10 flex items-center p-3 rounded-md'>
 								<span
 									className={`w-full text-lg flex items-center ${
-										pathname === '/most-viewed' && 'ctxtColor'
+										pathname === '/blogs/most-viewed' && 'ctxtColor'
 									}`}
-									onClick={() => router.push('/most-viewed')}>
+									onClick={() => router.push('/blogs/most-viewed')}>
 									<FaEye className='mr-2' />
 									Most Viewed
 								</span>
@@ -192,9 +192,9 @@ export default function Navbar() {
 								className='cursor-pointer hover:!bg-base-100 h-10 flex items-center p-3 rounded-md'>
 								<span
 									className={`w-full text-lg flex items-center ${
-										pathname === '/trending' && 'ctxtColor'
+										pathname === '/blogs/trending' && 'ctxtColor'
 									}`}
-									onClick={() => router.push('/trending')}>
+									onClick={() => router.push('/blogs/trending')}>
 									<FaChartLine className='mr-2' />
 									Trending
 								</span>

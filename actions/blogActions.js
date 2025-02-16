@@ -89,7 +89,7 @@ export const addBlogAction = async (formData) => {
 			categories,
 			thumbnailURL,
 		});
-		console.log(result);
+
 		if (result) {
 			return { success: true };
 		}
@@ -150,7 +150,6 @@ export const updateBlogAction = async (formData) => {
 		}
 
 		const result = await existingBlog.save();
-		console.log(result);
 
 		if (result) {
 			return { success: true };

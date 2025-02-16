@@ -1,5 +1,5 @@
 'use client';
-import styles from './checkbox.css';
+import styles from './checkbox.module.css';
 
 const Checkbox = ({
 	label,
