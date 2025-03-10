@@ -23,7 +23,7 @@ export default function Dropdown() {
 				</Link>
 			)} */}
 			{status === 'authenticated' && (
-				<div className='dropdown dropdown-end mr-5 sm:mr-1'>
+				<div className='dropdown dropdown-end mr-5 sm:mr-1 flex items-center justify-center'>
 					<Image
 						className='rounded-full  border-2 shadow-blackish mr-3'
 						tabIndex={tabIndex}

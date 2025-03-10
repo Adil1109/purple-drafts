@@ -25,7 +25,7 @@ export default function Navbar() {
 		<div className='z-20 sticky top-0 bg-red-300'>
 			<div className='w-full flex justify-between h-16 navbar bg-gradient-to-t to-[#0f172a] from-[#12243c]'>
 				<div>
-					<Link href={'/'} className='btn btn-ghost text-xl flex items-center'>
+					<Link href={'/'} className=' text-xl flex items-center'>
 						<Image
 							src={
 								'https://res.cloudinary.com/dccbdekei/image/upload/v1728768824/statics/jf3ub8jnj6gv7gpddiku.png'
@@ -105,7 +105,17 @@ export default function Navbar() {
 						)}
 					</ul>
 
-					<Dropdown />
+					<div className=' mr-5 sm:mr-1 flex items-center justify-center'>
+						<Image
+							className='rounded-full  border-2 shadow-blackish mr-3'
+							role='button'
+							src={session?.user?.image}
+							width={28}
+							height={28}
+							alt='Profile Picture'
+							onClick={() => router.push('/profile')}
+						/>
+					</div>
 				</div>
 				<div className='flex-none lg:hidden'>
 					<label

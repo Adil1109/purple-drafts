@@ -27,6 +27,7 @@ const fetchSuggestedBlogs = async (blogId) => {
 	);
 	if (!res.ok) return [];
 	const data = await res.json();
+
 	return data.blogs;
 };
 
@@ -35,9 +36,9 @@ export default async function BlogDetails({ params }) {
 	const blog = await fetchBlog(blogId);
 	const suggestedBlogs = await fetchSuggestedBlogs(blogId);
 
-	if (!blog) {
-		return <Loader />;
-	}
+	// if (!blog) {
+	// 	return <Loader />;
+	// }
 
 	return (
 		<main>
