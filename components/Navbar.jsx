@@ -22,9 +22,9 @@ export default function Navbar() {
 	const { status, data: session } = useSession();
 
 	return (
-		<div className='z-20 sticky top-0'>
-			<div className='w-full h-16 navbar bg-gradient-to-t to-[#0f172a] from-[#12243c]'>
-				<div className='flex-1'>
+		<div className='z-20 sticky top-0 bg-red-300'>
+			<div className='w-full flex justify-between h-16 navbar bg-gradient-to-t to-[#0f172a] from-[#12243c]'>
+				<div>
 					<Link href={'/'} className='btn btn-ghost text-xl flex items-center'>
 						<Image
 							src={
@@ -118,7 +118,9 @@ export default function Navbar() {
 			</div>
 			<div className='drawer drawer-end  z-20'>
 				<input id='my-drawer-3' type='checkbox' className='drawer-toggle' />
-				<div className='drawer-content flex flex-col gap-3'>{/* Navbar */}</div>
+				<div className='drawer-content bg-base-200 flex flex-col gap-3'>
+					{/* Navbar */}
+				</div>
 				<div className='drawer-side'>
 					<label
 						htmlFor='my-drawer-3'

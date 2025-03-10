@@ -1,3 +1,5 @@
+@import 'tailwindcss';
+@plugin "daisyui";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -40,65 +42,46 @@ body {
 	background-color: #a855f7;
 }
 
-.player-wrapper {
-	position: relative;
-	padding-top: 56.25%; /* 720 / 1280 = 0.5625 */
-}
-
-.react-player {
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
 }
 
-/* Firefox */
 input[type='number'] {
 	-moz-appearance: textfield;
 }
 
-/* General scrollbar customization */
 ::-webkit-scrollbar {
-	width: 12px; /* Default width for vertical scrollbar */
-	height: 12px; /* Default height for horizontal scrollbar */
+	width: 12px;
+	height: 12px;
 }
 
-/* Customize the horizontal scrollbar */
 ::-webkit-scrollbar:horizontal {
-	height: 2px; /* Set the height of the horizontal scrollbar */
+	height: 2px;
 }
 ::-webkit-scrollbar-thumb:horizontal {
-	background-color: #a855f7; /* Set the height of the horizontal scrollbar */
+	background-color: #a855f7;
 }
 
-/* Customize the scrollbar track */
 ::-webkit-scrollbar-track {
-	background: lightgray; /* Customize the track color */
+	background: lightgray;
 }
 
-/* Customize the horizontal scrollbar track */
 ::-webkit-scrollbar-track {
 	height: 2px;
-	border-radius: 6px; /* Match the track height to the horizontal scrollbar height */
+	border-radius: 6px;
 }
 
-/* Customize the scrollbar thumb */
 ::-webkit-scrollbar-thumb {
-	background-color: gray; /* Set the color of the scrollbar thumb to blue */
-	border-radius: 6px; /* Optional: add some border-radius for rounded corners */
+	background-color: gray;
+	border-radius: 6px;
 }
 
-/* Customize the horizontal scrollbar thumb */
 ::-webkit-scrollbar-thumb:horizontal {
-	height: 2px; /* Ensure the thumb height matches the horizontal scrollbar height */
+	height: 2px;
 }
 
-/* Optional: Add hover effect to the scrollbar thumb */
 ::-webkit-scrollbar-thumb:hover {
-	background-color: darkgray; /* Darker shade on hover */
+	background-color: darkgray;
 }
