@@ -8,6 +8,7 @@ import Input from '@/components/Input';
 import { useParams, useRouter } from 'next/navigation';
 import Loader from '@/components/Loader';
 import SubmitButton from '@/components/SubmitButton';
+import Select from '@/components/Select';
 
 const ShortUrlUpdateForm = () => {
 	const router = useRouter();
@@ -38,7 +39,7 @@ const ShortUrlUpdateForm = () => {
 		}
 	}, [byId]);
 
-	if (!shortUrlData.shortUrl) {
+	if (!shortUrlData._id) {
 		return <Loader />;
 	}
 
@@ -66,6 +67,7 @@ const ShortUrlUpdateForm = () => {
 
 				<Input
 					typeAttr={'text'}
+					classAttr={'w-full'}
 					nameAttr={'shortUrlIdentifier'}
 					placeholderAttr={'ShortUrl Name (e.g: Varsity24)'}
 					requiredAttr={true}
@@ -80,6 +82,7 @@ const ShortUrlUpdateForm = () => {
 				<Input
 					typeAttr={'text'}
 					nameAttr={'shortUrl'}
+					classAttr={'w-full'}
 					placeholderAttr={'ShortUrl Name'}
 					requiredAttr={true}
 					value={shortUrlData.shortUrl}
@@ -88,17 +91,16 @@ const ShortUrlUpdateForm = () => {
 					}
 				/>
 
-				<select
-					name='shortUrlType'
-					className='!bg-base-300 px-4 py-2 rounded-md  w-full resize-none'
+				<Select
+					nameAttr={'shortUrlType'}
+					classAttr={'w-full'}
 					value={shortUrlData.shortUrlType}
+					optionsAttr={['INTERNEL', 'EXTERNEL']}
 					required
 					onChange={(e) =>
 						setShortUrlData({ ...shortUrlData, shortUrlType: e.target.value })
-					}>
-					<option value='INTERNEL'>INTERNEL</option>
-					<option value='EXTERNEL'>EXTERNEL</option>
-				</select>
+					}
+				/>
 
 				<div className='self-center mt-4'>
 					<SubmitButton />

@@ -62,15 +62,14 @@ export default function Navbar() {
 							</Link>
 						</li>
 						<li>
-							{/* <Link
+							<Link
 								className={` ${
-									pathname === '/categories' && 'cbgColor'
+									pathname === '/categorized' && 'cbgColor'
 								} flex items-center`}
-								href={'/categories'}>
-								<FaThLarge className='mr-1' />
-								Categories
-							</Link> */}
-							<CategoryDropdown />
+								href={'/categorized'}>
+								<FaBook className='mr-1' />
+								Categorized
+							</Link>
 						</li>
 						<li>
 							<Link
@@ -162,11 +161,11 @@ export default function Navbar() {
 								className='cursor-pointer hover:!bg-base-100 h-10 flex items-center p-3 rounded-md'>
 								<span
 									className={`w-full text-lg flex items-center ${
-										pathname === '/categories' && 'ctxtColor'
+										pathname === '/categorized' && 'ctxtColor'
 									}`}
-									onClick={() => router.push('/categories')}>
+									onClick={() => router.push('/categorized')}>
 									<FaThLarge className='mr-2' />
-									Categories
+									Categorized
 								</span>
 							</label>
 						</p>

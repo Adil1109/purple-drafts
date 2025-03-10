@@ -102,7 +102,7 @@ export default function AllShortUrls() {
 						return (
 							<div
 								key={item._id}
-								className='flex !bg-base-100 p-4 rounded-lg shadow-lg w-96 smd:w-full items-center relative'>
+								className='flex !bg-base-200 p-4 rounded-lg shadow-lg w-96 smd:w-full items-center relative'>
 								<div className='flex self-start items-center'>
 									<div className='absolute right-5 top-3 flex items-center gap-3'>
 										<span className='text-xs mr-3'>

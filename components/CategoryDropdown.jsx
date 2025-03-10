@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { FaThLarge } from 'react-icons/fa';
+import { IoIosArrowDown } from 'react-icons/io';
 // import { GoSignOut } from 'react-icons/go';
 // import { MdAdminPanelSettings } from 'react-icons/md';
 // import { MdAssignmentAdd } from 'react-icons/md';
@@ -16,7 +18,12 @@ export default function CategoryDropdown() {
 	return (
 		<>
 			<div className='dropdown dropdown-end mr-5 sm:mr-1'>
-				<span onClick={() => setTabIndex(1)}>Categories</span>
+				<span
+					className='flex items-center justify-center gap-1'
+					onClick={() => setTabIndex(1)}>
+					<FaThLarge />
+					Categories <IoIosArrowDown />
+				</span>
 				<ul
 					tabIndex={tabIndex}
 					className={`dropdown-content shadow-gray-700 z-[1] menu p-2 mt-5 shadow-sm base=300 rounded-box w-56 ${

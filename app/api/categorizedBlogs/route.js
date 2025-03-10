@@ -1,6 +1,6 @@
 import { connectMongoDB } from '@/lib/mongodb';
+import Blog from '@/models/blogsModel';
 import Category from '@/models/categoriesModel';
-import Blog from '@/models/blogModel'; // Import the Blog model
 import { NextResponse } from 'next/server';
 
 await connectMongoDB();
@@ -13,7 +13,7 @@ export async function GET(request) {
 			categories.map(async (category) => {
 				const recentBlogs = await Blog.find({ categories: category._id })
 					.sort({ createdAt: -1 })
-					.limit(10);
+					.limit(3);
 				return {
 					category,
 					blogs: recentBlogs,

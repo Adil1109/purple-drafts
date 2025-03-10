@@ -7,6 +7,7 @@ export default function Select({
 	errorAttr,
 	placeholderAttr,
 	optionsAttr,
+	nameAttr,
 	...props
 }) {
 	return (
@@ -25,6 +26,7 @@ export default function Select({
 							: ''
 					}`}
 					required={requiredAttr}
+					name={nameAttr}
 					{...props}>
 					{placeholderAttr && <option value=''>{placeholderAttr}</option>}
 					{optionsAttr &&

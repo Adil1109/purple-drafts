@@ -5,34 +5,46 @@ import { signOut, useSession } from 'next-auth/react';
 import SigninBtn from '@/components/SigninBtn';
 import Loader from '@/components/Loader';
 import { useEffect, useState } from 'react';
-import MsgShower from '@/components/MsgShower';
-import ScrollMsg from '@/components/ScrollMsg';
-// import CourseCard from '@/components/CourseCard';
 import Link from 'next/link';
-import { resizeGoogleProfileImage } from '@/lib/formatTime';
+import History from '@/components/History';
+import Bookmarks from '@/components/Bookmarks';
+import { useParams } from 'next/navigation';
 
 function UserInfo() {
 	const { status, data: session } = useSession();
+	const params = useParams();
+	const [activeTab, setActiveTab] = useState(0);
+
+	const handleTabClick = (index) => {
+		setActiveTab(index);
+	};
+
+	const tabs = [
+		{ title: 'History', component: <History /> },
+		{ title: 'Bookmarks', component: <Bookmarks /> },
+	];
 
 	if (status === 'loading') {
 		return <Loader />;
 	} else if (status === 'authenticated') {
 		return (
-			<div className='mx-auto  mr-4'>
-				<div className='px-8 py-4 rounded-md flex flex-col gap-3 items-center'>
+			<div className='mx-auto px-8'>
+				<div className=' py-4 rounded-md flex flex-col gap-3 items-center'>
 					<button
-						className='self-end text-center rounded-md w-20 h-10 cbgColor'
+						className='self-end text-center rounded-md w-20 h-10 cbgColor text-white'
 						onClick={() => {
 							signOut();
 						}}>
 						Signout
 					</button>
 					<Image
-						className='rounded-full shadow-lg h-32 w-32'
-						src={resizeGoogleProfileImage(session?.user?.image)}
-						alt='User Image'
-						width={800}
-						height={800}
+						className='rounded-full w-[100px] h-[100px] shadow-2xl'
+						src={session?.user?.image}
+						width={600}
+						height={600}
+						alt='User Photo'
+						placeholder='blur'
+						blurDataURL='L02rs+~q9FRjj[j[ayfQfQfQfQfQ'
 					/>
 
 					<div>
@@ -46,6 +58,25 @@ function UserInfo() {
 					</div>
 
 					<hr className='w-full border-slate-700' />
+				</div>
+				<div>
+					<div className='flex flex-col'>
+						<div className='flex mt-2 justify-center'>
+							<div className='bg-base-200 shadow-md rounded-3xl  text-center flex  justify-center'>
+								{tabs.map((tab, index) => (
+									<button
+										key={index}
+										className={`${
+											activeTab === index ? 'cbgColor text-white' : ''
+										} rounded-3xl w-32 py-2`}
+										onClick={() => handleTabClick(index)}>
+										{tab.title}
+									</button>
+								))}
+							</div>
+						</div>
+					</div>
+					<div>{tabs[activeTab].component}</div>
 				</div>
 			</div>
 		);

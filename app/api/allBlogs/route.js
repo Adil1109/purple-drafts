@@ -1,6 +1,6 @@
 import { connectMongoDB } from '@/lib/mongodb';
 import Blog from '@/models/blogsModel';
-import ViewLog from '@/models/viewLogsSchema';
+import History from '@/models/historyModel';
 import { NextResponse } from 'next/server';
 
 await connectMongoDB();
@@ -11,39 +11,38 @@ export async function GET(request) {
 		const type = request.nextUrl.searchParams.get('type');
 		const BlogPerPage = 10;
 		let query = {};
-		let sortOption = { createdAt: -1 }; // Default sorting (recent blogs)
+		let sortOption = { createdAt: -1 };
 
 		if (type === 'most-viewed') {
 			sortOption = { viewsCount: -1 };
 		} else if (type === 'trending') {
-			// Get trending blogs from the last 24 hours with pagination
 			const twentyFourHoursAgo = new Date();
 			twentyFourHoursAgo.setHours(twentyFourHoursAgo.getHours() - 24);
 
-			const trendingBlogs = await ViewLog.aggregate([
+			const trendingBlogs = await History.aggregate([
 				{
 					$match: { createdAt: { $gte: twentyFourHoursAgo } },
 				},
 				{
 					$group: {
-						_id: '$blog',
+						_id: '$Blog', // Updated to match the History schema
 						views: { $sum: 1 },
 					},
 				},
 				{ $sort: { views: -1 } },
-				{ $skip: (page - 1) * BlogPerPage }, // Pagination
+				{ $skip: (page - 1) * BlogPerPage },
 				{ $limit: BlogPerPage },
 				{
 					$lookup: {
-						from: 'blogs', // Join with the Blog collection
+						from: 'blogs',
 						localField: '_id',
 						foreignField: '_id',
 						as: 'blogDetails',
 					},
 				},
-				{ $unwind: '$blogDetails' }, // Convert array to object
+				{ $unwind: '$blogDetails' },
 				{
-					$replaceRoot: { newRoot: '$blogDetails' }, // Keep only blog data
+					$replaceRoot: { newRoot: '$blogDetails' },
 				},
 			]);
 

@@ -50,6 +50,7 @@ export default function CreateShortUrl() {
 				/>
 
 				<Select
+					nameAttr={'shortUrlType'}
 					requiredAttr={true}
 					placeholderAttr={'Select Type'}
 					classAttr={'w-full'}

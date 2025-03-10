@@ -1,13 +1,16 @@
+'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 
 export default function BlogCard({ blog }) {
 	const router = useRouter();
 	const pathname = usePathname();
-
 	return (
-		<div className='card md:w-96 w-full bg-slate-800 shadow-xl rounded-lg overflow-hidden'>
+		<Link
+			href={`/blogs/view/${blog?._id}`}
+			className='card md:w-96 sm:max-w-96 w-full bg-slate-800 shadow-xl rounded-lg overflow-hidden'>
 			{blog?.thumbnailURL && (
 				<figure>
 					<Image
@@ -52,6 +55,6 @@ export default function BlogCard({ blog }) {
 					</div>
 				)}
 			</div>
-		</div>
+		</Link>
 	);
 }

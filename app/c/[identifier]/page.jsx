@@ -44,7 +44,7 @@ export default function Redirector() {
 		return (
 			<div className='min-h-screen flex items-center justify-center'>
 				<StudyButton
-					LinkProp={'https://hsccrackers.com'}
+					LinkProp={'https://purpledrafts.com'}
 					BtnTitle={'Home'}
 					Heading={'Invalid Link'}
 					SubHeading={'Go back to homepage!'}

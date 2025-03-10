@@ -8,22 +8,27 @@ import CategoryCard from '@/components/CategoryCard';
 import { useParams, useRouter } from 'next/navigation';
 import BlogCard from '@/components/BlogCard';
 import NoDataComponent from '@/components/NoDataMessage';
+import { fetchCategoryAction } from '@/actions/categoryActions';
 
-export default function RecentBlogs() {
+export default function CategoryBlogs() {
 	const [page, setPage] = useState(1);
 	const [blogs, setBlogs] = useState([]);
+	const [category, setCategory] = useState();
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState('');
 	const [end, setEnd] = useState(false);
 	const [endErr, setEndErr] = useState(false);
 	const router = useRouter();
 	const params = useParams();
-	function formatBlogType(text) {
-		return text
-			.split('-')
-			.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-			.join(' ');
-	}
+	useEffect(() => {
+		const fetchData = async () => {
+			const categoryData = await fetchCategoryAction(params?.categoryId);
+			console.log(categoryData);
+
+			setCategory(categoryData);
+		};
+		fetchData();
+	}, [params]);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -31,9 +36,7 @@ export default function RecentBlogs() {
 
 			try {
 				const response = await fetch(
-					`/api/allBlogs?page=${page}&type=${
-						params.type ? params.type : 'recent-blogs'
-					}`
+					`/api/allBlogs/byCategory?page=${page}&categoryId=${params.categoryId}`
 				);
 
 				if (!response.ok) {
@@ -87,7 +90,7 @@ export default function RecentBlogs() {
 	return (
 		<div className=''>
 			<p className='py-6 underline italic text-center text-2xl'>
-				{formatBlogType(params.type)}
+				{category?.name}
 			</p>
 			<div className='flex px-6 pt-2 pb-6 gap-5 flex-wrap w-full justify-center'>
 				{!blogs ? (
