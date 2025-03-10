@@ -105,17 +105,19 @@ export default function Navbar() {
 						)}
 					</ul>
 
-					<div className=' mr-5 sm:mr-1 flex items-center justify-center'>
-						<Image
-							className='rounded-full  border-2 shadow-blackish mr-3'
-							role='button'
-							src={session?.user?.image}
-							width={28}
-							height={28}
-							alt='Profile Picture'
-							onClick={() => router.push('/profile')}
-						/>
-					</div>
+					{status === 'authenticated' && (
+						<div className=' mr-5 sm:mr-1 flex items-center justify-center'>
+							<Image
+								className='rounded-full  border-2 shadow-blackish mr-3'
+								role='button'
+								src={session?.user?.image}
+								width={28}
+								height={28}
+								alt='Profile Picture'
+								onClick={() => router.push('/profile')}
+							/>
+						</div>
+					)}
 				</div>
 				<div className='flex-none lg:hidden'>
 					<label
