@@ -23,6 +23,16 @@ const joiBlogUpdateSchema = Joi.object({
 	author: Joi.string().required(),
 	thumbnailURL: Joi.string().allow('').optional(),
 });
+
+const createSlug = (title) => {
+	return title
+		.toLowerCase()
+		.trim()
+		.replace(/[^a-z0-9\s-]/g, '') // Remove special characters
+		.replace(/\s+/g, '-') // Replace spaces with dashes
+		.replace(/-+/g, '-'); // Remove duplicate dashes
+};
+
 export const fetchAllBlogAction = async () => {
 	try {
 		await connectMongoDB();
@@ -55,6 +65,7 @@ export const addBlogAction = async (formData) => {
 		const author = formData.get('author')?.toString();
 		const thumbnailImage = formData.get('thumbnailImage');
 		const categories = formData.getAll('categories');
+
 		if (
 			!thumbnailImage ||
 			(thumbnailImage.type !== 'image/jpeg' &&
@@ -78,10 +89,23 @@ export const addBlogAction = async (formData) => {
 		if (error) {
 			throw new Error(error);
 		}
+
 		await connectMongoDB();
+
+		let slug = createSlug(title);
+
+		// Ensure slug is unique
+		let exists = await Blog.findOne({ slug });
+		let counter = 1;
+		while (exists) {
+			slug = `${createSlug(title)}-${counter}`;
+			exists = await Blog.findOne({ slug });
+			counter++;
+		}
 
 		const result = await Blog.create({
 			title,
+			slug,
 			shortDescription,
 			description,
 			tags,
@@ -97,7 +121,6 @@ export const addBlogAction = async (formData) => {
 		return { error: error.message };
 	}
 };
-
 export const updateBlogAction = async (formData) => {
 	try {
 		const blogId = formData.get('blogId')?.toString();
@@ -119,6 +142,7 @@ export const updateBlogAction = async (formData) => {
 		) {
 			thumbnailURL = await fileUploader(thumbnailImage, 'images');
 		}
+
 		const { error, value } = joiBlogUpdateSchema.validate({
 			title,
 			shortDescription,
@@ -139,6 +163,20 @@ export const updateBlogAction = async (formData) => {
 		if (!existingBlog) {
 			throw new Error('Blog not found');
 		}
+
+		// If title changed, regenerate and check unique slug
+		if (existingBlog.title !== title) {
+			let slug = createSlug(title);
+			let exists = await Blog.findOne({ slug, _id: { $ne: blogId } });
+			let counter = 1;
+			while (exists) {
+				slug = `${createSlug(title)}-${counter}`;
+				exists = await Blog.findOne({ slug, _id: { $ne: blogId } });
+				counter++;
+			}
+			existingBlog.slug = slug;
+		}
+
 		existingBlog.title = title;
 		existingBlog.shortDescription = shortDescription;
 		existingBlog.description = description;

@@ -1,6 +1,17 @@
 import RecentBlogs from '@/components/RecentBlogs';
-
-export default function Home() {
+const fetchBlogs = async (blogId) => {
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_API_URL}/api/allBlogs?page=1`,
+		{
+			next: { revalidate: 3600 },
+		}
+	);
+	if (!res.ok) return null;
+	const data = await res.json();
+	return data.blogs;
+};
+export default async function Home() {
+	const blogs = await fetchBlogs();
 	return (
 		<div
 			className=''
@@ -41,7 +52,7 @@ export default function Home() {
 				</div>
 			</div>
 
-			<RecentBlogs />
+			<RecentBlogs blogs={blogs} />
 		</div>
 	);
 }

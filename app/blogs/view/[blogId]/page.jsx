@@ -5,6 +5,7 @@ import BlogCard from '@/components/BlogCard';
 import SeeComments from '@/components/SeeComments';
 import Loader from '@/components/Loader';
 import BookmarkButton from '@/components/BookmarkButton';
+import CreateHistory from '@/components/CreateHistory';
 
 const fetchBlog = async (blogId) => {
 	const res = await fetch(
@@ -99,6 +100,7 @@ export default async function BlogDetails({ params }) {
 					</div>
 				</div>
 			</div>
+			<CreateHistory />
 		</main>
 	);
 }
